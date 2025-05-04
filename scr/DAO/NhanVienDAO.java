@@ -151,10 +151,10 @@ public class NhanVienDAO {
         {
             stmt.setString(1,nhanvien.getID_NV());
             stmt.setString(2,nhanvien.getTEN_NV());
-            stmt.setString(3,nhanvien.getSDT_NV());
-            stmt.setString(4,nhanvien.getCCCD_NV());
-            stmt.setString(5,nhanvien.getEMAIL_NV());
-            stmt.setString(6,nhanvien.getGIOITINH_NV());
+            stmt.setString(3, nhanvien.getEMAIL_NV());
+            stmt.setString(4, nhanvien.getSDT_NV());
+            stmt.setString(5, nhanvien.getCCCD_NV());
+            stmt.setString(6, nhanvien.getGIOITINH_NV());
             stmt.setString(7,nhanvien.getTRANGTHAI_NV());
             stmt.setString(8,nhanvien.getCHUCVU().getID_CV());
 
@@ -190,7 +190,7 @@ public class NhanVienDAO {
         }
     }
 
-    public boolean deletebyName(String TEN_NV)
+    public boolean deleteByName(String TEN_NV)
     {
         String sql = "DELETE FROM NHANVIEN WHERE TEN_NV = ?";
         try(PreparedStatement stmt = conn.prepareStatement(sql))
@@ -207,7 +207,6 @@ public class NhanVienDAO {
     
     public boolean deleteById(String id_nv) {
         try {
-            conn = MySQLConnection.getConnection();
             String sql = "DELETE FROM NHANVIEN WHERE ID_NV = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, id_nv);

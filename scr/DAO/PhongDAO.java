@@ -52,7 +52,7 @@ public class PhongDAO {
                     LoaiPhongDTO loai = new LoaiPhongDTO();
                     loai.setID_LOAIPHG(rs.getString("ID_LOAIPHG"));
                     loai.setTEN_LOAIPHG(rs.getString("TEN_LOAIHG"));
-                    loai.setDONGIA_PHG(rs.getInt("DONGIA_PHG"));
+                    loai.setDONGIA_PHG(rs.getFloat("DONGIA_PHG"));
                     loai.setMOTA_LOAIPHG(rs.getString("MOTA_PHG"));
                     loai.setTRANGTHAI_LOAIPHG(rs.getString("TRANGTHAI_LOAIPHG"));
 
@@ -70,15 +70,14 @@ public class PhongDAO {
     public PhongDTO getById(String id)
     {
         String sql = "SELECT p.*, lp.* FROM PHONG p JOIN LOAIPHONG lp ON p.ID_LP = lp.ID_LP WHERE p.ID_PHG = ?";
-        try (PreparedStatement stmt = conn.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
-
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, id);
+            ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 LoaiPhongDTO lp = new LoaiPhongDTO();
                 lp.setID_LOAIPHG(rs.getString("ID_LOAIPHG"));
                 lp.setTEN_LOAIPHG(rs.getString("TEN_LOAIPHG"));
-                lp.setDONGIA_PHG(rs.getInt("DONGIA_PHG"));
+                lp.setDONGIA_PHG(rs.getFloat("DONGIA_PHG"));
                 lp.setMOTA_LOAIPHG(rs.getString("MOTA_PHG"));
                 lp.setTRANGTHAI_LOAIPHG(rs.getString("TRANGTHAI_LOAIHG"));
     
@@ -96,6 +95,34 @@ public class PhongDAO {
         }
         return null;
     }
+
+    public List<PhongDTO> getByTrangThai(String trangThai) {
+    List<PhongDTO> list = new ArrayList<>();
+    String sql = "SELECT p.*, lp.* FROM PHONG p JOIN LOAIPHONG lp ON p.ID_LP = lp.ID_LP WHERE p.TINHTRANG_PHG = ?";
+    try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setString(1, trangThai);
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            LoaiPhongDTO lp = new LoaiPhongDTO();
+            lp.setID_LOAIPHG(rs.getString("ID_LP"));
+            lp.setTEN_LOAIPHG(rs.getString("TEN_LOAIHG"));
+            lp.setDONGIA_PHG(rs.getFloat("DONGIA_PHG"));
+            lp.setMOTA_LOAIPHG(rs.getString("MOTA_PHG"));
+            lp.setTRANGTHAI_LOAIPHG(rs.getString("TRANGTHAI_LOAIPHG"));
+
+            PhongDTO phong = new PhongDTO();
+            phong.setID_PHG(rs.getString("ID_PHG"));
+            phong.setTEN_PHG(rs.getString("TEN_PHG"));
+            phong.setTINHTRANG_PHG(rs.getString("TINHTRANG_PHG"));
+            phong.setLOAIPHONG(lp);
+
+            list.add(phong);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return list;
+}
 
     public boolean exists(String id) {
         String sql = "SELECT ID_PHG FROM PHONG WHERE ID_PHG = ?";

@@ -14,6 +14,7 @@ public class PhieuDatPhongDAO {
     private Connection conn;
     public PhieuDatPhongDAO()
     {
+        conn = MySQLConnection.getConnection();
         try
         {
             if(conn!=null)
@@ -77,7 +78,13 @@ public class PhieuDatPhongDAO {
             System.out.println("Phieu dat phong da ton tai!");
             return false;
         }
-        String sql = "INSERT INTO PHIEUDATPHONG(ID_PHEIUDAT, NGAYDAT, NGAYTRA, ID_KH, ID_NV) VALUES (?, ?, ?, ?, ?)";
+        
+        if (pd.getNhanVienPD() == null || pd.getKhachHangPD() == null) {
+            System.err.println("Nhan vien hoac khach hang bi null");
+            return false;
+        }
+
+        String sql = "INSERT INTO PHIEUDATPHONG(ID_PHIEUDAT, NGAYDAT, NGAYTRA, ID_KH, ID_NV) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, pd.getID_PD());
             stmt.setDate(2, new java.sql.Date(pd.getNGAYDAT().getTime()));
@@ -93,6 +100,11 @@ public class PhieuDatPhongDAO {
     }
 
     public boolean update(PhieuDatPhongDTO pd) {
+        if (pd.getNhanVienPD() == null || pd.getKhachHangPD() == null) {
+            System.err.println("Nhan vien hoac khach hang bi null");
+            return false;
+        }
+
         String sql = "UPDATE PHIEUDATPHONG SET NGAYDAT = ?, NGAYTRA = ?, ID_KH = ?, ID_NV = ? WHERE ID_PHIEUDAT = ?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setDate(1, new java.sql.Date(pd.getNGAYDAT().getTime()));

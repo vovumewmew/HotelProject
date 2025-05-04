@@ -86,9 +86,9 @@ public class KhachHangDAO {
 
     public KhachHangDTO getById(String id) {
         String sql = "SELECT * FROM KHACHHANG WHERE ID_KH = ?";
-        try (PreparedStatement stmt = conn.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, id);
+            ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 KhachHangDTO k = new KhachHangDTO();
                 k.setID_KH(rs.getString("ID_KH"));
@@ -129,10 +129,10 @@ public class KhachHangDAO {
         {
             stmt.setString(1,khachhang.getID_KH());
             stmt.setString(2,khachhang.getTEN_KH());
-            stmt.setString(3,khachhang.getGIOITINH_KH());
-            stmt.setString(4,khachhang.getSDT_KH());
-            stmt.setString(5,khachhang.getCCCD_KH());
-            stmt.setString(6,khachhang.getEMAIL_KH());
+            stmt.setString(3, khachhang.getEMAIL_KH());
+            stmt.setString(4, khachhang.getSDT_KH());
+            stmt.setString(5, khachhang.getCCCD_KH());
+            stmt.setString(6, khachhang.getGIOITINH_KH());
             stmt.setString(7,khachhang.getTRANGTHAI_KH());
             return stmt.executeUpdate()>0;
         }

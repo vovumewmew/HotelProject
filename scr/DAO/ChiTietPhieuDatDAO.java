@@ -17,6 +17,7 @@ public class ChiTietPhieuDatDAO {
     {
         try
         {
+            conn = MySQLConnection.getConnection();
             if(conn!=null)
             {
                 System.out.println("ket noi co so du lieu cho PhieuDatPhongDAO thanh cong");
@@ -43,7 +44,7 @@ public class ChiTietPhieuDatDAO {
             while (rs.next()) {
                 ChiTietPhieuDatDTO ct = new ChiTietPhieuDatDTO();
     
-                ct.setTONGTIEN_CTPD(rs.getInt("TONGTIEN_CTPHIEUDAT"));
+                ct.setTONGTIEN_CTPD(rs.getFloat("TONGTIEN_CTPHIEUDAT"));
                 ct.setTRANGTHAI_CTPD(rs.getString("TRANGTHAI"));
     
                 PhieuDatPhongDTO pd = new PhieuDatPhongDAO().getById(rs.getString("ID_PHIEUDAT"));
@@ -66,7 +67,7 @@ public class ChiTietPhieuDatDAO {
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, ct.getPhieuDat_CTPD().getID_PD());
             stmt.setString(2, ct.getPhong_CTPD().getID_PHG());
-            stmt.setInt(3, ct.getTONGTIEN_CTPD());
+            stmt.setFloat(3, ct.getTONGTIEN_CTPD());
             stmt.setString(4, ct.getTRANGTHAI_CTPD());
 
             return stmt.executeUpdate() > 0;
@@ -106,7 +107,7 @@ public class ChiTietPhieuDatDAO {
     public boolean update(ChiTietPhieuDatDTO ct) {
         String sql = "UPDATE CHITIETPHIEUDAT SET TONGTIEN_CTPHIEUDAT = ?, TRANGTHAI = ? WHERE ID_PHIEUDAT = ? AND ID_PHG = ?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, ct.getTONGTIEN_CTPD());
+            stmt.setFloat(1, ct.getTONGTIEN_CTPD());
             stmt.setString(2, ct.getTRANGTHAI_CTPD());
             stmt.setString(3, ct.getPhieuDat_CTPD().getID_PD());
             stmt.setString(4, ct.getPhong_CTPD().getID_PHG());
