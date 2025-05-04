@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class HoaDonDTO {
     private String ID_HD;
-    private int TONGTIEN_HD;
+    private float TONGTIEN_HD;
     private Date NGAYLAP_HD;
     private PhieuDatPhongDTO PD_HD;
 
@@ -39,10 +39,10 @@ public class HoaDonDTO {
         PD_HD = pD_HD;
     }
 
-    public int getTONGTIEN_HD() {
+    public float getTONGTIEN_HD() {
         return TONGTIEN_HD;
     }
-    public void setTONGTIEN_HD(int tONGTIEN_HD) {
+    public void setTONGTIEN_HD(float tONGTIEN_HD) {
         TONGTIEN_HD = tONGTIEN_HD;
     }
 }

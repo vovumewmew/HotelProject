@@ -3,7 +3,7 @@ package DTO;
 public class DichVuDTO {
     private String ID_DV;
     private String TEN_DV;
-    private int DONGIA_DV;
+    private float DONGIA_DV;
     private String MOTA_DV;
 
     public DichVuDTO() {}
@@ -30,10 +30,10 @@ public class DichVuDTO {
         TEN_DV = tEN_DV;
     }
 
-    public int getDONGIA_DV() {
+    public float getDONGIA_DV() {
         return DONGIA_DV;
     }
-    public void setDONGIA_DV(int dONGIA_DV) {
+    public void setDONGIA_DV(float dONGIA_DV) {
         DONGIA_DV = dONGIA_DV;
     }
 

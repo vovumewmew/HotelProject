@@ -3,7 +3,7 @@ package DTO;
 public class LoaiPhongDTO {
     private String ID_LOAIPHG;
     private String TEN_LOAIPHG;
-    private int DONGIA_PHG;
+    private float DONGIA_PHG;
     private String MOTA_LOAIPHG;
     private String TRANGTHAI_LOAIPHG;
     
@@ -29,10 +29,10 @@ public class LoaiPhongDTO {
     public void setTEN_LOAIPHG(String tEN_LOAIPHG) {
         TEN_LOAIPHG = tEN_LOAIPHG;
     }
-    public int getDONGIA_PHG() {
+    public float getDONGIA_PHG() {
         return DONGIA_PHG;
     }
-    public void setDONGIA_PHG(int dONGIA_PHG) {
+    public void setDONGIA_PHG(float dONGIA_PHG) {
         DONGIA_PHG = dONGIA_PHG;
     }
     public String getMOTA_LOAIPHG() {

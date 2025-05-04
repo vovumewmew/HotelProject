@@ -2,7 +2,7 @@ package DTO;
 
 public class ChiTietDichVuDTO {
     private int SOLUONGDV_CTDV;
-    private int TONGTIENDV_CTDV;
+    private float TONGTIENDV_CTDV;
     private DichVuDTO DV_CTDV;
     private PhieuDatPhongDTO PD_CTDV;
 
@@ -16,10 +16,10 @@ public class ChiTietDichVuDTO {
         this.PD_CTDV = PD_CTDV;
     }
 
-    public int getTONGTIENDV_CTDV() {
+    public float getTONGTIENDV_CTDV() {
         return TONGTIENDV_CTDV;
     }
-    public void setTONGTIENDV_CTDV(int tONGTIENDV_CTDV) {
+    public void setTONGTIENDV_CTDV(float tONGTIENDV_CTDV) {
         TONGTIENDV_CTDV = tONGTIENDV_CTDV;
     }
 

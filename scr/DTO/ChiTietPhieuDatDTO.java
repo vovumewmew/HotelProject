@@ -1,7 +1,7 @@
 package DTO;
 
 public class ChiTietPhieuDatDTO {
-    private int TONGTIEN_CTPD;
+    private float TONGTIEN_CTPD;
     private String TRANGTHAI_CTPD;
     private PhieuDatPhongDTO PhieuDat_CTPD;
     private PhongDTO Phong_CTPD;
@@ -16,10 +16,10 @@ public class ChiTietPhieuDatDTO {
         this.Phong_CTPD = Phong_CTPD;
     }
 
-    public int getTONGTIEN_CTPD() {
+    public float getTONGTIEN_CTPD() {
         return TONGTIEN_CTPD;
     }
-    public void setTONGTIEN_CTPD(int tONGTIEN_CTPD) {
+    public void setTONGTIEN_CTPD(float tONGTIEN_CTPD) {
         TONGTIEN_CTPD = tONGTIEN_CTPD;
     }
 
